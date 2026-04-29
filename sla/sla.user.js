@@ -13,4 +13,6 @@
 
 (async function () {
     'use strict'
+
+    test()
 })();
