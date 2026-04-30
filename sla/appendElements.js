@@ -40,8 +40,8 @@ function createToast(){
         top: 80px;
         border-radius: 5px;
         color: #FFF;
-        display: none;
-        opacity: 0;
+        display: flex;
+        opacity: 1;
         align-items: center;
         justify-content: start;
         padding: 10px 15px;
