@@ -6,4 +6,11 @@ function addStyles() {
             font-weight: bold;
         }`
     );
+
+    GM_addStyle(`
+        .active-toast {
+            display: flex !important;
+            opacity: 1 !important;
+        }`
+    );
 }

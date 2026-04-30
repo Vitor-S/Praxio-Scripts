@@ -18,7 +18,5 @@
 
     addStyles()
 
-    document.querySelector(".page-header").classList.add("minha-classe")
-
-    createLoadingScreen()
+    createElements()
 })();

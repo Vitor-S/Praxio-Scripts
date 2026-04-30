@@ -38,14 +38,20 @@ function createToast(){
         left: 50%;
         top: 80px;
         border-radius: 5px;
-        transition: .3s ease-in-out;
         color: #FFF;
-        display: flex;
+        display: none;
+        opacity: 0;
         align-items: center;
         justify-content: start;
         padding: 10px 15px;
         font-size: 1.7rem;
+        transition: .3s ease-in-out;
     `
 
     toast.innerText = 'Teste'
+}
+
+function createElements(){
+    createLoadingScreen()
+    createToast()
 }
