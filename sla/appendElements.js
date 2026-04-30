@@ -13,7 +13,7 @@ function createLoadingScreen() {
         top: 0;
         left: 0;
         background-color: rgba(255, 255, 255, 0.8);
-        display: flex;
+        display: none;
         align-items: center;
         justify-content: center;
     `
@@ -25,4 +25,27 @@ function createLoadingScreen() {
         "></i>
     `
     document.body.appendChild(loadingScreen)
+}
+
+function createToast(){
+    const toast = document.createElement('div')
+
+    toast.style = `
+        min-width: 300px;
+        min-height: 50px;
+        background-color: #f79b31;
+        position: absolute;
+        left: 50%;
+        top: 80px;
+        border-radius: 5px;
+        transition: .3s ease-in-out;
+        color: #FFF;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding: 10px 15px;
+        font-size: 1.7rem;
+    `
+
+    toast.innerText = 'Teste'
 }

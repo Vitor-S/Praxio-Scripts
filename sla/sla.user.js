@@ -6,6 +6,7 @@
 // @author       Vitor
 // @match        https://portaldocliente.praxio.com.br/Ticket*
 // @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/appendElements.js
+// @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/appendStyles.js
 // @updateURL    https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/sla.user.js
 // @downloadURL  https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/sla.user.js
 // @run-at       document-idle
@@ -14,6 +15,10 @@
 
 (async function () {
     'use strict'
+
+    addStyles()
+
+    document.querySelector(".page-header").classList.add("minha-classe")
 
     createLoadingScreen()
 })();
