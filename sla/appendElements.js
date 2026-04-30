@@ -28,33 +28,58 @@ function createLoadingScreen() {
 }
 
 function createToast(){
-    const toast = document.createElement('div')
-    toast.id = 'toast'
+    const toastContainer = document.createElement('div')
+    toastContainer.id = 'toast'
 
-    toast.style = `
+    toastContainer.style.cssText = `
+        position: fixed;
         min-width: 300px;
-        min-height: 50px;
-        background-color: #f79b31;
-        position: absolute;
+        min-height: 45px;
+        background-color: #FFF;
         left: 50%;
         top: -80px;
-        border-radius: 5px;
-        color: #FFF;
+        border-radius: 3px;
+        overflow: hidden;
         display: flex;
-        opacity: 1;
+        gap: 10px;
+        opacity: 0;
         align-items: center;
-        justify-content: start;
         padding: 10px 15px;
-        font-size: 1.7rem;
+        font-size: 1.5rem;
         transition: .3s ease-in-out;
+        z-index: 10000;
+        box-shadow: 0px 0px 10px -3px rgba(0,0,0,0.48);
+        color: #000;
+        transform: translateX(-50%)
     `
 
-    toast.innerText = 'Teste'
+    // ICON
+    const toastIcon = document.createElement('i')
+    toastIcon.id = "toast-icon"
+    toastIcon.className = 'fa fa-exclamation-triangle'
+    toastIcon.style.color = 'orange'
 
-    document.body.appendChild(toast)
+    // MESSAGE
+    const toastMessage = document.createElement('span')
+    toastMessage.id = "toast-message"
+    toastMessage.innerText = 'Teste'
+
+    // monta corretamente (sem sobrescrever depois)
+    toastContainer.appendChild(toastIcon)
+    toastContainer.appendChild(toastMessage)
+
+    document.body.appendChild(toastContainer)
 }
 
 function createElements(){
     createLoadingScreen()
     createToast()
+
+    const button = document.createElement("button")
+    button.innerText = "teste"
+    button.addEventListener('click', () => {
+        testToast("A merda do seu time resolveu ganhar hoje. Parabéns!", "check")
+    })
+
+    document.querySelector(".page-header").appendChild(button)
 }
