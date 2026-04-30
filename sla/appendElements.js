@@ -50,7 +50,7 @@ function createToast(){
         z-index: 10000;
         box-shadow: 0px 0px 10px -3px rgba(0,0,0,0.48);
         color: #000;
-        transform: translateX(-50%)
+        transform: translateX(-50%);
     `
 
     // ICON

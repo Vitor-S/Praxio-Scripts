@@ -8,6 +8,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
 // @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/appendElements.js
 // @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/appendStyles.js
+// @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/utils.js
 // @updateURL    https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/sla.user.js
 // @downloadURL  https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/sla.user.js
 // @run-at       document-idle
@@ -24,7 +25,7 @@
     const button = document.createElement("button")
     button.innerText = "teste"
     button.addEventListener('click', () => {
-        testToast("A merda do seu time resolveu ganhar hoje. Parabéns!", "check")
+        invokeToast("A merda do seu time resolveu ganhar hoje. Parabéns!", "check")
     })
 
     document.querySelector(".page-header").appendChild(button)
