@@ -29,6 +29,7 @@ function createLoadingScreen() {
 
 function createToast(){
     const toast = document.createElement('div')
+    toast.id = 'toast'
 
     toast.style = `
         min-width: 300px;
