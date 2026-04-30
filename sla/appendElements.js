@@ -50,6 +50,8 @@ function createToast(){
     `
 
     toast.innerText = 'Teste'
+
+    document.body.appendChild(toast)
 }
 
 function createElements(){
