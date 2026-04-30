@@ -74,12 +74,4 @@ function createToast(){
 function createElements(){
     createLoadingScreen()
     createToast()
-
-    const button = document.createElement("button")
-    button.innerText = "teste"
-    button.addEventListener('click', () => {
-        testToast("A merda do seu time resolveu ganhar hoje. Parabéns!", "check")
-    })
-
-    document.querySelector(".page-header").appendChild(button)
 }
