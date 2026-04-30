@@ -37,10 +37,10 @@ function createToast(){
         background-color: #f79b31;
         position: absolute;
         left: 50%;
-        top: 80px;
+        top: -80px;
         border-radius: 5px;
         color: #FFF;
-        display: none;
+        display: flex;
         opacity: 0;
         align-items: center;
         justify-content: start;

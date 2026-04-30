@@ -11,6 +11,7 @@ function addStyles() {
         .active-toast {
             display: flex !important;
             opacity: 1 !important;
+            top: 80px !important;
         }`
     );
 }
