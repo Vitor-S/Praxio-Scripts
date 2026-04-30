@@ -1,9 +1,9 @@
-function invokeToast(message, icon="warning"){
+function invokeToast(message, icon="warning", time=3500){
     const toast = document.querySelector("#toast")
     const toastIcon = document.querySelector("#toast-icon")
     const toastMessage = document.querySelector("#toast-message")
 
-    toastIcon.style.color = icon == "check" ? "green" : "red"
+    toastIcon.style.color = icon == "check" ? "green" : icon == "error" ? "red" : "orange"
     toastIcon.classList = icon == "check" ? "fa fa-check" : icon == "error" ? "fa fa-times" : "fa fa-exclamation-triangle"
     toastMessage.innerText = message.charAt(0).toUpperCase() + message.slice(1)
 
@@ -11,7 +11,7 @@ function invokeToast(message, icon="warning"){
 
     setTimeout(() => {
         toast.classList.remove("active-toast")
-    }, 3500)
+    }, time)
 }
 
 function getSlaColumnIndex() {
@@ -25,7 +25,7 @@ function getSlaColumnIndex() {
     )
 
     if (slaTargetIndex === -1) {
-        invokeToast("Você deve adicionar a coluna Previsão de Entrega", "warning")
+        invokeToast("Você deve adicionar a coluna Previsão de Entrega", "error")
         return null
     }
 
