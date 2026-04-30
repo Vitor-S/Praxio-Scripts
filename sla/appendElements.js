@@ -74,6 +74,6 @@ function createToast(){
 }
 
 function createElements(){
-    createLoadingScreen()
+    // createLoadingScreen()
     createToast()
 }
