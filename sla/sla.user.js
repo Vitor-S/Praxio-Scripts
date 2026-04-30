@@ -8,7 +8,7 @@
 // @require      https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css
 // @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/appendElements.js
 // @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/appendStyles.js
-// @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/utils.js
+// @require      https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/functions.js
 // @updateURL    https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/sla.user.js
 // @downloadURL  https://raw.githubusercontent.com/Vitor-S/Praxio-Scripts/main/sla/sla.user.js
 // @run-at       document-idle
@@ -19,8 +19,8 @@
     'use strict'
 
     addStyles()
-
     createElements()
+    getSlaColumnIndex()
 
     const button = document.createElement("button")
     button.innerText = "teste"

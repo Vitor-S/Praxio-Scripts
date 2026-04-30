@@ -1,7 +1,3 @@
-function test() {
-    alert("test 2")
-}
-
 function createLoadingScreen() {
     const loadingScreen = document.createElement("div")
     loadingScreen.id = "loadingScreen"
@@ -12,7 +8,7 @@ function createLoadingScreen() {
         z-index: 9999;
         top: 0;
         left: 0;
-        background-color: rgba(255, 255, 255, 0.8);
+        background-color: rgba(176, 176, 176, 0.8);
         display: none;
         align-items: center;
         justify-content: center;
@@ -20,7 +16,7 @@ function createLoadingScreen() {
     loadingScreen.innerHTML = `
         <i class="fa fa-spinner fa-spin" style="
             font-size: 25px;
-            color: #333;
+            color: #1a1919;
             animation: fa-spin 0.6s infinite linear;
         "></i>
     `
