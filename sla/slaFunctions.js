@@ -22,5 +22,5 @@ async function getSlaTicketList(listId, token) {
 
     const data = await Promise.all(ticketPromises)
 
-    return data
+    return data.map(({ version, message, ...rest }) => rest)
 }
