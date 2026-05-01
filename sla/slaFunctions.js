@@ -60,18 +60,15 @@ function updateSlaInTable(slaList, slaColumnIndex) {
         const idTicket = ticket.querySelector("a").href.split("/Ticket/TicketPrincipal/")[1]
         const slaData = slaList.find(sla => sla.idTicket === idTicket)
         if (slaData) {
-            switch (slaData.sla) {
-                case slaData.sla <= 480:
-                    ticket.children[slaColumnIndex].style.color = "green"
-                    break;
-                case slaData.sla > 480 && slaData.sla <= 960:
-                    ticket.children[slaColumnIndex].style.color = "orange"
-                    break;
-                case slaData.sla > 960:
-                    ticket.children[slaColumnIndex].style.color = "red"
-                    break;
-                default:
-                    ticket.children[slaColumnIndex].style.color = "black"
+            
+            if (slaData.sla <= 480) {
+                ticket.children[slaColumnIndex].style.color = "green"
+            } else if (slaData.sla <= 960) {
+                ticket.children[slaColumnIndex].style.color = "orange"
+            } else if (slaData.sla > 960) {
+                ticket.children[slaColumnIndex].style.color = "red"
+            } else {
+                ticket.children[slaColumnIndex].style.color = "black"
             }
 
             ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
