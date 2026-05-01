@@ -49,8 +49,6 @@ function createToast(){
         transform: translateX(-50%);
     `
 
-    console.log("1");
-
     // ICON
     const toastIcon = document.createElement('i')
     toastIcon.id = "toast-icon"

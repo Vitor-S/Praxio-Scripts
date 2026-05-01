@@ -13,22 +13,3 @@ function invokeToast(message, icon="warning", time=3500){
         toast.classList.remove("active-toast")
     }, time)
 }
-
-function getSlaColumnIndex() {
-    const header = document.querySelector("#grdTicket_DXHeadersRow0")
-    if (!header) return null
-
-    const heads = header.querySelectorAll(":scope > td")
-
-    const slaTargetIndex = Array.from(heads).findIndex(
-        head => head.innerText.trim() === "Previsão de Entrega"
-    )
-
-    if (slaTargetIndex === -1) {
-        invokeToast("Você deve adicionar a coluna Previsão de Entrega", "error")
-        return null
-    }
-
-    heads[slaTargetIndex].innerText = "Tempo SLA"
-    return slaTargetIndex
-}
