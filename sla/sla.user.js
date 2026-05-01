@@ -44,9 +44,9 @@
     }
 
     function onMatch() {
-        // setTimeout(() => {
-        updateSlaFromLocalStorage()
-        // }, 1500)
+        setTimeout(() => {
+            updateSlaFromLocalStorage()
+        }, 1500)
     }
 
     /* ================= FETCH ================= */
