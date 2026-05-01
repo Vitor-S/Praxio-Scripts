@@ -54,6 +54,8 @@ function saveSlaList(slaList) {
 
 // função que pega os sla's do local storage a atuliza na coluna "tempo SLA"
 async function handleSLA() {
+    console.log("iniciando handleSLA");
+
     const slaColumnIndex = getSlaColumnIndex()
     const idList = getTicketIdList()
 
