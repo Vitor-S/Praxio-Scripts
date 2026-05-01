@@ -1,8 +1,6 @@
 // função que verifica a coluna "previsão de entrega" e troca ela para "tempo SLA"
 function getSlaColumnIndex() {
-    alert("Ok")
     const header = document.querySelector("#grdTicket_DXHeadersRow0")
-    alert("Ok")
     if (!header) return null
 
     const heads = header.querySelectorAll(":scope > td")
@@ -93,6 +91,8 @@ function updateSlaInTable(slaList, slaColumnIndex) {
 // atualizar tabela com base no sla salvo no local storage
 function updateSlaFromLocalStorage() {
     const slaColumnIndex = getSlaColumnIndex()
+    if(slaColumnIndex === null) return
+
     const slaList = JSON.parse(localStorage.getItem("sla-list"))
 
     updateSlaInTable(slaList, slaColumnIndex)
