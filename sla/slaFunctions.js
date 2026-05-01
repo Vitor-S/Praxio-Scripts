@@ -60,7 +60,21 @@ function updateSlaInTable(slaList, slaColumnIndex) {
         const idTicket = ticket.querySelector("a").href.split("/Ticket/TicketPrincipal/")[1]
         const slaData = slaList.find(sla => sla.idTicket === idTicket)
         if (slaData) {
-            ticket.children[slaColumnIndex].innerText = slaData.sla
+            ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
+
+            switch(slaData.sla){
+                case slaData.sla <= 480:
+                    ticket.children[slaColumnIndex].style.color = "green"
+                    break;
+                case slaData.sla > 480 && slaData.sla <= 960:
+                    ticket.children[slaColumnIndex].style.color = "orange"
+                    break;
+                case slaData.sla > 960:
+                    ticket.children[slaColumnIndex].style.color = "red"
+                    break;
+                default:
+                    ticket.children[slaColumnIndex].style.color = "black"
+            }
         }
     })
 }
