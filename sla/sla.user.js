@@ -25,7 +25,8 @@
     updateSlaFromLocalStorage()
 
     // se passados 10 minutos desde a última atualização, busca os dados novamente
-    if (verifyLastUpdate(2)) {
+    const autoUpdateState = localStorage.getItem("auto-update")
+    if (verifyLastUpdate(10) && autoUpdateState === "true") {
         await updateSLA()
     }
 })();
@@ -44,9 +45,9 @@
     }
 
     function onMatch() {
-        setTimeout(() => {
+        //setTimeout(() => {
             updateSlaFromLocalStorage()
-        }, 1500)
+        //}, 1500)
     }
 
     /* ================= FETCH ================= */

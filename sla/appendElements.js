@@ -101,8 +101,45 @@ function createUpdateSlaButton() {
     document.querySelector(".page-header").appendChild(updateSlaButton)
 }
 
+function createAutoUpdateSlaButton() {
+    const autoUpdateButton = document.createElement("li")
+    autoUpdateButton.id = "autoUpdateButton"
+    autoUpdateButton.classList = "powertour-hook powertour-highlight hover-show hover-shown"
+    autoUpdateButton.style.cssText = `
+        width: 100%;
+        aspect-ratio: 1/1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid #e5e5e5;
+        transition: .15s ease-in-out;
+        cursor: pointer;
+    `
+
+    autoUpdateButton.addEventListener("click", () => {
+        const currentState = localStorage.getItem("auto-update") == "true"
+        localStorage.setItem("auto-update", !currentState)
+        document.querySelector("#autoupdate-icon").style.color = !currentState ? '#5A5A5A' : '#CCC'
+    })
+
+    const autoUpdateState = localStorage.getItem("auto-update")
+
+    const autoUpdateIcon = document.createElement('i')
+    autoUpdateIcon.id = "autoupdate-icon"
+    autoUpdateIcon.className = 'fa fa-refresh'
+    autoUpdateIcon.style.color = autoUpdateState == true || autoUpdateState == "true" ? '#5A5A5A' : '#CCC'
+    autoUpdateIcon.style.fontSize = "18px"
+
+    autoUpdateButton.appendChild(autoUpdateIcon)
+
+    document.querySelector("#sidebar-collapse").before(autoUpdateButton)
+}
+
 function createElements() {
     createLoadingScreen()
     createToast()
     createUpdateSlaButton()
+    createAutoUpdateSlaButton()
 }
