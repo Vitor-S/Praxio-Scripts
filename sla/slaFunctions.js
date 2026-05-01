@@ -57,25 +57,34 @@ function updateSlaInTable(slaList, slaColumnIndex) {
     const tickets = document.querySelectorAll(".dxgvDataRow_Metropolis")
 
     tickets.forEach(ticket => {
-        const idTicket = ticket.querySelector("a").href.split("/Ticket/TicketPrincipal/")[1]
-        const slaData = slaList.find(sla => sla.idTicket === idTicket)
+        const cells = ticket.querySelectorAll("td")
+        const cell = cells[slaColumnIndex]
 
-        // sai da função se não tiver SLA
-        if (!slaData) return
-            
-        //define as cores conforme tempo de SLA
-        if (slaData.sla <= 600) {
-            ticket.children[slaColumnIndex].style.color = "green"  // até 10 horas = verde
-        } else if (slaData.sla <= 1380) {
-            ticket.children[slaColumnIndex].style.color = "blue" // entre 10 e 23 horas = azul
-        } else if (slaData.sla >= 1440) {
-            ticket.children[slaColumnIndex].style.color = "red" // maior que 24 = vermelho
-        } else {
-            ticket.children[slaColumnIndex].style.color = "black"
+        if (!cell) {
+            invokeToast("Coluna não encontrada", "warning")
+            return
         }
 
-        // insere o SLA formatado na tabela
-        ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
+        const link = ticket.querySelector("a")
+        if (!link) return
+
+        const idTicket = link.href.split("/Ticket/TicketPrincipal/")[1]
+        const slaData = slaList.find(sla => sla.idTicket === idTicket)
+
+        if (!slaData) return
+
+        // 🎯 cores SLA
+        if (slaData.sla <= 600) {
+            cell.style.color = "green"
+        } else if (slaData.sla <= 1380) {
+            cell.style.color = "blue"
+        } else if (slaData.sla >= 1440) {
+            cell.style.color = "red"
+        } else {
+            cell.style.color = "black"
+        }
+
+        cell.innerText = formatMinutesToHHMM(slaData.sla)
     })
 }
 
