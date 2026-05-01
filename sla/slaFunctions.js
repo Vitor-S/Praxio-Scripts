@@ -10,7 +10,7 @@ function getSlaColumnIndex() {
     )
 
     if (slaTargetIndex === -1) {
-        invokeToast("Você deve adicionar a coluna Previsão de Entrega na tabela!", "error")
+        invokeToast("Você deve adicionar a coluna Previsão de Entrega na tabela!", "error", infinite = true)
         return null
     }
 
@@ -59,20 +59,23 @@ function updateSlaInTable(slaList, slaColumnIndex) {
     tickets.forEach(ticket => {
         const idTicket = ticket.querySelector("a").href.split("/Ticket/TicketPrincipal/")[1]
         const slaData = slaList.find(sla => sla.idTicket === idTicket)
-        if (slaData) {
-            
-            if (slaData.sla <= 480) {
-                ticket.children[slaColumnIndex].style.color = "green"
-            } else if (slaData.sla <= 960) {
-                ticket.children[slaColumnIndex].style.color = "orange"
-            } else if (slaData.sla > 960) {
-                ticket.children[slaColumnIndex].style.color = "red"
-            } else {
-                ticket.children[slaColumnIndex].style.color = "black"
-            }
 
-            ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
+        // sai da função se não tiver SLA
+        if (!slaData) return
+            
+        //define as cores conforme tempo de SLA
+        if (slaData.sla <= 600) {
+            ticket.children[slaColumnIndex].style.color = "green"  // até 10 horas = verde
+        } else if (slaData.sla <= 1380) {
+            ticket.children[slaColumnIndex].style.color = "blue" // entre 10 e 23 horas = azul
+        } else if (slaData.sla >= 1440) {
+            ticket.children[slaColumnIndex].style.color = "red" // maior que 24 = vermelho
+        } else {
+            ticket.children[slaColumnIndex].style.color = "black"
         }
+
+        // insere o SLA formatado na tabela
+        ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
     })
 }
 
