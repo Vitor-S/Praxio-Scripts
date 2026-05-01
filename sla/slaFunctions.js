@@ -43,17 +43,25 @@ async function getSlaList(listId, token) {
     })
 
     const data = await Promise.all(ticketPromises)
-    const test = data.map(({ version, message, ...rest }) => rest)
 
-    return test
+    return data
 }
 
 // função que salva a lista de sla no local storage
 function saveSlaList(slaList) {
-    localStorage.setItem("slaList", JSON.stringify(slaList))
+    localStorage.setItem("sla-list", JSON.stringify(slaList))
 }
 
 // função que pega os sla's do local storage a atuliza na coluna "tempo SLA"
 async function handleSLA() {
-    
+    const slaColumnIndex = getSlaColumnIndex()
+    const idList = getTicketIdList()
+
+    try{
+        const slaList =await getSlaList(idList, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb29raWVzIjpbeyJrZXkiOiJBU1AuTkVUX1Nlc3Npb25JZCIsInZhbHVlIjoid2J4bm0yeXNkNXRkM3pmc2M0eHdzdnNyIiwiZG9tYWluIjoicG9ydGFsZG9jbGllbnRlLnByYXhpby5jb20uYnIiLCJwYXRoIjoiLyIsImh0dHBPbmx5Ijp0cnVlLCJob3N0T25seSI6dHJ1ZSwiY3JlYXRpb24iOiIyMDI2LTA1LTAxVDA3OjIyOjMwLjM5MVoiLCJsYXN0QWNjZXNzZWQiOiIyMDI2LTA1LTAxVDA3OjIyOjMyLjU2MFoiLCJzYW1lU2l0ZSI6ImxheCJ9LHsia2V5IjoiLkFTUFhBVVRIIiwidmFsdWUiOiIwMUZCNDBBOThDQjgyOThGMTAzQkQxQ0Q4MTlERjg1NjUyMDNBNzQ1MjhCNEUwODc0RjA0QjNGRDRBNDRGNDA3OTlERUM2RTBDRThGOTIwQTlDREQwQTEyOEE5MzE2NzY0NkRDRTc0RjZBQzNCMzhDMDg0NjYwNzUxRkFFRjA3MDkxODY1REVCNzI0NUEyQUY2MTQwOEEzMDE2MzMzMkEwMTFCRTE1NzUxREMzNDJCMDU4NUU3OTE5RTA2MzlDNUEwM0VFMDE0RTcyMDc5Q0VFRjFEMzA3Rjg5OTcyMzI5MjY3OEM1QzFFRUVBMTA2MjFEMTAxMkFDQ0Q2NkREQzNFIiwiZG9tYWluIjoicG9ydGFsZG9jbGllbnRlLnByYXhpby5jb20uYnIiLCJwYXRoIjoiLyIsImh0dHBPbmx5Ijp0cnVlLCJob3N0T25seSI6dHJ1ZSwiY3JlYXRpb24iOiIyMDI2LTA1LTAxVDA3OjIyOjMwLjM5MVoiLCJsYXN0QWNjZXNzZWQiOiIyMDI2LTA1LTAxVDA3OjIyOjMyLjU2MFoiLCJzYW1lU2l0ZSI6ImxheCJ9XSwiaWF0IjoxNzc3NjIwMTUyLCJleHAiOjE3Nzc2MzQ1NTJ9.RXYdEpDeIEXclcJcwyAROsQLU0X4MMpZUfBiIbfIDlM')
+
+        saveSlaList(slaList)
+    }catch(e){
+        invokeToast("Erro ao buscar os dados de SLA!", "error")
+    }
 }
