@@ -6,7 +6,7 @@ function getSlaColumnIndex() {
     const heads = header.querySelectorAll(":scope > td")
 
     const slaTargetIndex = Array.from(heads).findIndex(
-        head => head.innerText.trim() === "Previsão de Entrega"
+        head => head.innerText.trim() === "Previsão de Entrega" || head.innerText.trim() === "Tempo SLA"
     )
 
     if (slaTargetIndex === -1) {
