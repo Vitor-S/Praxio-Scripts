@@ -56,13 +56,12 @@ function saveSlaList(slaList) {
 // retorna se ja se passaram 10 minutos desde a última atualização
 function verifyLastUpdate(minutes=10) {
     const lastUpdate = localStorage.getItem("sla-last-update")
-
     if (!lastUpdate) return false
 
     const currentTime = new Date().getTime()
     const timeDiff = currentTime - lastUpdate
 
-    return timeDiff < 1000 * 60 * minutes; 
+    return timeDiff > 1000 * 60 * minutes; 
 }
 
 // Função para atualizar SLA's na tabela do portal
@@ -118,6 +117,7 @@ async function updateSLA() {
     if (slaColumnIndex === null) return
 
     const idList = getTicketIdList()
+    if (!idList) return
 
     invokeToast("Buscando dados de SLA, por favor aguarde...", "loading", 0, true)
 
