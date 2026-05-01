@@ -84,6 +84,7 @@ function createUpdateSlaButton() {
         gap: 5px;
         margin-left: auto;
     `
+    updateSlaButton.addEventListener("click", async () => await updateSLA())
 
     const updateSlaIcon = document.createElement('i')
     updateSlaIcon.id = "updatesla-icon"
