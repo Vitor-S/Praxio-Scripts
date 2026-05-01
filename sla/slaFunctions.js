@@ -54,7 +54,7 @@ function saveSlaList(slaList) {
 }
 
 // retorna se ja se passaram 10 minutos desde a última atualização
-function verifyLastUpdate() {
+function verifyLastUpdate(minutes=10) {
     const lastUpdate = localStorage.getItem("sla-last-update")
 
     if (!lastUpdate) return false
@@ -62,7 +62,7 @@ function verifyLastUpdate() {
     const currentTime = new Date().getTime()
     const timeDiff = currentTime - lastUpdate
 
-    return timeDiff < 1000 * 60 * 10; // 10 minutos
+    return timeDiff < 1000 * 60 * minutes; 
 }
 
 // Função para atualizar SLA's na tabela do portal

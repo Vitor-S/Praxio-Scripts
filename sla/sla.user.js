@@ -25,7 +25,7 @@
     const hasData = updateSlaFromLocalStorage()
 
     // se passados 10 minutos desde a última atualização, busca os dados novamente
-    if(verifyLastUpdate || !hasData){
+    if(verifyLastUpdate(minutes) || hasData == false){
         await updateSLA()
     }
 })();
