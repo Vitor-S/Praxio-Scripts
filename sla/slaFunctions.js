@@ -60,9 +60,7 @@ function updateSlaInTable(slaList, slaColumnIndex) {
         const idTicket = ticket.querySelector("a").href.split("/Ticket/TicketPrincipal/")[1]
         const slaData = slaList.find(sla => sla.idTicket === idTicket)
         if (slaData) {
-            ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
-
-            switch(slaData.sla){
+            switch (slaData.sla) {
                 case slaData.sla <= 480:
                     ticket.children[slaColumnIndex].style.color = "green"
                     break;
@@ -75,8 +73,18 @@ function updateSlaInTable(slaList, slaColumnIndex) {
                 default:
                     ticket.children[slaColumnIndex].style.color = "black"
             }
+
+            ticket.children[slaColumnIndex].innerText = formatMinutesToHHMM(slaData.sla)
         }
     })
+}
+
+// atualizar tabela com base no sla salvo no local storage
+function updateSlaFromLocalStorage() {
+    const slaColumnIndex = getSlaColumnIndex()
+    const slaList = JSON.parse(localStorage.getItem("sla-list"))
+
+    updateSlaInTable(slaList, slaColumnIndex)
 }
 
 // função que pega os sla's do local storage a atuliza na coluna "tempo SLA"

@@ -17,11 +17,11 @@
 
 (async function () {
     'use strict'
-
-    // Adiciona estilos à página
+    // Adiciona estilos à página  // Adciona os elementos necessários à página
     addStyles()
-
-    // Adciona os elementos necessários à página
     createElements()
-    await handleSLA()
+
+    updateSlaFromLocalStorage()
+
+    // await handleSLA()
 })();
