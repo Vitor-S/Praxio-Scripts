@@ -41,7 +41,7 @@
 
     function onMatch() {
         // setTimeout(() => {
-            setTicketsSla(getSlaColumnIndex())
+            updateSlaFromLocalStorage()
         // }, 1500)
     }
 
