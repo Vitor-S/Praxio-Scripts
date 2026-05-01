@@ -23,6 +23,6 @@
 
     // Adciona os elementos necessários à página
     createElements()
-
+    invokeToast("Buscando dados de SLA, por favor aguarde...", "warning", 1000)
     await handleSLA()
 })();
