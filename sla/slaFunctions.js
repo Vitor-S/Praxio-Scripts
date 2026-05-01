@@ -56,7 +56,7 @@ function saveSlaList(slaList) {
 // retorna se ja se passaram 10 minutos desde a última atualização
 function verifyLastUpdate(minutes=10) {
     const lastUpdate = localStorage.getItem("sla-last-update")
-    if (!lastUpdate) return false
+    if (!lastUpdate) return true
 
     const currentTime = new Date().getTime()
     const timeDiff = currentTime - lastUpdate
