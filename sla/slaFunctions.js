@@ -107,6 +107,7 @@ function updateSlaFromLocalStorage() {
     if (slaColumnIndex === null) return
 
     const slaList = JSON.parse(localStorage.getItem("sla-list"))
+    if(!slaList) return false
 
     updateSlaInTable(slaList, slaColumnIndex)
 }

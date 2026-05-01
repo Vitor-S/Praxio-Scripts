@@ -22,10 +22,10 @@
     createElements()
 
     // coloca na tabela os dados do local storage
-    updateSlaFromLocalStorage()
+    const hasData = updateSlaFromLocalStorage()
 
     // se passados 10 minutos desde a última atualização, busca os dados novamente
-    if(verifyLastUpdate){
+    if(verifyLastUpdate || !hasData){
         await updateSLA()
     }
 })();
