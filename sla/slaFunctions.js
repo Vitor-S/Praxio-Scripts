@@ -10,6 +10,7 @@ function getSlaColumnIndex() {
     )
 
     if (slaTargetIndex === -1) {
+        alert("Ok")
         invokeToast("Você deve adicionar a coluna Previsão de Entrega na tabela!", "error", 0, true, false)
         return null
     }
