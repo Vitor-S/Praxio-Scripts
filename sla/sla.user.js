@@ -25,7 +25,7 @@
     const hasData = updateSlaFromLocalStorage()
 
     // se passados 10 minutos desde a última atualização, busca os dados novamente
-    if(verifyLastUpdate(minutes) || hasData == false){
+    if (verifyLastUpdate(2) || hasData == false) {
         await updateSLA()
     }
 })();
@@ -45,7 +45,7 @@
 
     function onMatch() {
         // setTimeout(() => {
-            updateSlaFromLocalStorage()
+        updateSlaFromLocalStorage()
         // }, 1500)
     }
 

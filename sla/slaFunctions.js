@@ -86,7 +86,6 @@ function updateSlaInTable(slaList, slaColumnIndex) {
 
         if (!slaData) return
 
-        // 🎯 cores SLA
         if (slaData.sla <= 600) {
             cell.style.color = "green"
         } else if (slaData.sla <= 1380) {
@@ -104,12 +103,13 @@ function updateSlaInTable(slaList, slaColumnIndex) {
 // atualizar tabela com base no sla salvo no local storage
 function updateSlaFromLocalStorage() {
     const slaColumnIndex = getSlaColumnIndex()
-    if (slaColumnIndex === null) return
+    if (slaColumnIndex === null) return false
 
     const slaList = JSON.parse(localStorage.getItem("sla-list"))
-    if(!slaList) return false
+    if (!slaList) return false
 
     updateSlaInTable(slaList, slaColumnIndex)
+    return true
 }
 
 // função que pega os sla's do local storage a atuliza na coluna "tempo SLA"
