@@ -1,6 +1,8 @@
 // função que verifica a coluna "previsão de entrega" e troca ela para "tempo SLA"
 function getSlaColumnIndex() {
+    alert("Ok")
     const header = document.querySelector("#grdTicket_DXHeadersRow0")
+    alert("Ok")
     if (!header) return null
 
     const heads = header.querySelectorAll(":scope > td")
@@ -10,7 +12,6 @@ function getSlaColumnIndex() {
     )
 
     if (slaTargetIndex === -1) {
-        alert("Ok")
         invokeToast("Você deve adicionar a coluna Previsão de Entrega na tabela!", "error", 0, true, false)
         return null
     }
