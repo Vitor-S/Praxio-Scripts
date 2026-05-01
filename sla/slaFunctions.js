@@ -50,6 +50,19 @@ async function getSlaList(listId, token) {
 // função que salva a lista de sla no local storage
 function saveSlaList(slaList) {
     localStorage.setItem("sla-list", JSON.stringify(slaList))
+    localStorage.setItem("sla-last-update", new Date().getTime())
+}
+
+// retorna se ja se passaram 10 minutos desde a última atualização
+function verifyLastUpdate() {
+    const lastUpdate = localStorage.getItem("sla-last-update")
+
+    if (!lastUpdate) return false
+
+    const currentTime = new Date().getTime()
+    const timeDiff = currentTime - lastUpdate
+
+    return timeDiff < 1000 * 60 * 10; // 10 minutos
 }
 
 // Função para atualizar SLA's na tabela do portal
@@ -91,7 +104,7 @@ function updateSlaInTable(slaList, slaColumnIndex) {
 // atualizar tabela com base no sla salvo no local storage
 function updateSlaFromLocalStorage() {
     const slaColumnIndex = getSlaColumnIndex()
-    if(slaColumnIndex === null) return
+    if (slaColumnIndex === null) return
 
     const slaList = JSON.parse(localStorage.getItem("sla-list"))
 
@@ -99,10 +112,10 @@ function updateSlaFromLocalStorage() {
 }
 
 // função que pega os sla's do local storage a atuliza na coluna "tempo SLA"
-async function handleSLA() {
-    console.log("iniciando handleSLA");
-
+async function updateSLA() {
     const slaColumnIndex = getSlaColumnIndex()
+    if (slaColumnIndex === null) return
+
     const idList = getTicketIdList()
 
     invokeToast("Buscando dados de SLA, por favor aguarde...", "loading", 0, true)
@@ -111,7 +124,6 @@ async function handleSLA() {
         const slaList = await getSlaList(idList, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjb29raWVzIjpbeyJrZXkiOiJBU1AuTkVUX1Nlc3Npb25JZCIsInZhbHVlIjoid2J4bm0yeXNkNXRkM3pmc2M0eHdzdnNyIiwiZG9tYWluIjoicG9ydGFsZG9jbGllbnRlLnByYXhpby5jb20uYnIiLCJwYXRoIjoiLyIsImh0dHBPbmx5Ijp0cnVlLCJob3N0T25seSI6dHJ1ZSwiY3JlYXRpb24iOiIyMDI2LTA1LTAxVDA3OjIyOjMwLjM5MVoiLCJsYXN0QWNjZXNzZWQiOiIyMDI2LTA1LTAxVDA3OjIyOjMyLjU2MFoiLCJzYW1lU2l0ZSI6ImxheCJ9LHsia2V5IjoiLkFTUFhBVVRIIiwidmFsdWUiOiIwMUZCNDBBOThDQjgyOThGMTAzQkQxQ0Q4MTlERjg1NjUyMDNBNzQ1MjhCNEUwODc0RjA0QjNGRDRBNDRGNDA3OTlERUM2RTBDRThGOTIwQTlDREQwQTEyOEE5MzE2NzY0NkRDRTc0RjZBQzNCMzhDMDg0NjYwNzUxRkFFRjA3MDkxODY1REVCNzI0NUEyQUY2MTQwOEEzMDE2MzMzMkEwMTFCRTE1NzUxREMzNDJCMDU4NUU3OTE5RTA2MzlDNUEwM0VFMDE0RTcyMDc5Q0VFRjFEMzA3Rjg5OTcyMzI5MjY3OEM1QzFFRUVBMTA2MjFEMTAxMkFDQ0Q2NkREQzNFIiwiZG9tYWluIjoicG9ydGFsZG9jbGllbnRlLnByYXhpby5jb20uYnIiLCJwYXRoIjoiLyIsImh0dHBPbmx5Ijp0cnVlLCJob3N0T25seSI6dHJ1ZSwiY3JlYXRpb24iOiIyMDI2LTA1LTAxVDA3OjIyOjMwLjM5MVoiLCJsYXN0QWNjZXNzZWQiOiIyMDI2LTA1LTAxVDA3OjIyOjMyLjU2MFoiLCJzYW1lU2l0ZSI6ImxheCJ9XSwiaWF0IjoxNzc3NjIwMTUyLCJleHAiOjE3Nzc2MzQ1NTJ9.RXYdEpDeIEXclcJcwyAROsQLU0X4MMpZUfBiIbfIDlM')
 
         saveSlaList(slaList)
-
         updateSlaInTable(slaList, slaColumnIndex)
 
         invokeToast("SLA's atualizados com sucesso!", "check", 2000)

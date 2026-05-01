@@ -21,9 +21,13 @@
     addStyles()
     createElements()
 
+    // coloca na tabela os dados do local storage
     updateSlaFromLocalStorage()
 
-    // await handleSLA()
+    // se passados 10 minutos desde a última atualização, busca os dados novamente
+    if(verifyLastUpdate){
+        await updateSLA()
+    }
 })();
 
 
