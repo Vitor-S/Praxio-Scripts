@@ -3,8 +3,24 @@ function invokeToast(message, icon = "warning", time = 3500, infinite = false, r
     const toastIcon = document.querySelector("#toast-icon")
     const toastMessage = document.querySelector("#toast-message")
 
-    toastIcon.style.color = icon == "check" ? "green" : icon == "error" ? "red" : "orange"
-    toastIcon.classList = icon == "check" ? "fa fa-check" : icon == "error" ? "fa fa-times" : "fa fa-exclamation-triangle"
+    switch (icon) {
+        case "check":
+            toastIcon.style.color = "green"
+            toastIcon.classList = "fa fa-check"
+            break
+        case "error":
+            toastIcon.style.color = "red"
+            toastIcon.classList = "fa fa-times"
+            break
+        case "loading":
+            toastIcon.style.color = "black"
+            toastIcon.classList = "fa fa-spinner fa-spin"
+            break
+        default:
+            toastIcon.style.color = "orange"
+            toastIcon.classList = "fa fa-exclamation-triangle"
+    }
+
     toastMessage.innerText = message.charAt(0).toUpperCase() + message.slice(1)
 
     if (revoke) {
@@ -19,4 +35,13 @@ function invokeToast(message, icon = "warning", time = 3500, infinite = false, r
     setTimeout(() => {
         toast.classList.remove("active-toast")
     }, time)
+}
+
+function formatMinutesToHHMM(totalMinutes) {
+    if (totalMinutes == null || isNaN(totalMinutes)) return ""
+
+    const hours = Math.floor(totalMinutes / 60)
+    const minutes = Math.floor(totalMinutes % 60)
+
+    return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`
 }
