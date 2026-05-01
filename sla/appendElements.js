@@ -23,7 +23,7 @@ function createLoadingScreen() {
     document.body.appendChild(loadingScreen)
 }
 
-function createToast(){
+function createToast() {
     const toastContainer = document.createElement('div')
     toastContainer.id = 'toast'
     toastContainer.addEventListener("click", () => {
@@ -71,7 +71,37 @@ function createToast(){
     document.body.appendChild(toastContainer)
 }
 
-function createElements(){
+function createUpdateSlaButton() {
+    document.querySelector(".page-header").style = "display: flex;"
+
+    const updateSlaButton = document.createElement("button")
+    updateSlaButton.id = "updateSlaButton"
+    updateSlaButton.classList = "btn btn-primary btn-white dropdown-toggle"
+    updateSlaButton.style.cssText = `
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        margin-left: auto;
+    `
+
+    const updateSlaIcon = document.createElement('i')
+    updateSlaIcon.id = "updatesla-icon"
+    updateSlaIcon.className = 'fa fa-refresh'
+    updateSlaIcon.style.color = '#8aafce;'
+
+    const updateSlaText = document.createElement('span')
+    updateSlaText.id = "updatesla-text"
+    updateSlaText.innerText = 'Atualizar SLA'
+
+    updateSlaButton.appendChild(updateSlaIcon)
+    updateSlaButton.appendChild(updateSlaText)
+
+    document.querySelector(".page-header").appendChild(updateSlaButton)
+}
+
+function createElements() {
     createLoadingScreen()
     createToast()
+    createUpdateSlaButton()
 }
