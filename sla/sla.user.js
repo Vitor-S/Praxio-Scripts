@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Vitor Praxio Scripts
 // @namespace    https://portaldocliente.praxio.com.br
-// @version      1.3.3
+// @version      2.0
 // @description  Script para o portal do cliente praxio
 // @author       Vitor
 // @match        https://portaldocliente.praxio.com.br/Ticket*
