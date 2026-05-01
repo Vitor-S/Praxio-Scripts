@@ -25,3 +25,48 @@
 
     // await handleSLA()
 })();
+
+
+// atualizar tabela quando houver chamadas de rede para os endpoints de pesquisa de tickets
+(function interceptNetwork() {
+
+    const TARGET_URLS = [
+        "/Ticket/PesquisaPartial"
+    ]
+
+    function matchUrl(url) {
+        return typeof url === "string" &&
+            TARGET_URLS.some(endpoint => url.includes(endpoint))
+    }
+
+    function onMatch() {
+        // setTimeout(() => {
+            setTicketsSla(getSlaColumnIndex())
+        // }, 1500)
+    }
+
+    /* ================= FETCH ================= */
+    const originalFetch = window.fetch
+
+    window.fetch = async function (...args) {
+        const url = args[0]
+
+        if (matchUrl(url)) {
+            onMatch()
+        }
+
+        return originalFetch.apply(this, args)
+    }
+
+    /* ================= XHR ================= */
+    const originalOpen = XMLHttpRequest.prototype.open
+
+    XMLHttpRequest.prototype.open = function (method, url, ...rest) {
+        if (matchUrl(url)) {
+            onMatch()
+        }
+
+        return originalOpen.call(this, method, url, ...rest)
+    }
+
+})();
