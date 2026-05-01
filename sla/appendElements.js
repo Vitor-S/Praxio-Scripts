@@ -26,8 +26,12 @@ function createLoadingScreen() {
 function createToast(){
     const toastContainer = document.createElement('div')
     toastContainer.id = 'toast'
+    toastContainer.addEventListener("click", () => {
+        toastContainer.classList.remove("active-toast")
+    })
 
     toastContainer.style.cssText = `
+        cursor: pointer;
         position: fixed;
         min-width: 300px;
         min-height: 45px;
